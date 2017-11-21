@@ -1,0 +1,32 @@
+#nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  line-height: 1rem;
+  background: #fff;
+  border-bottom: #ccc 0.5px solid;
+  ul {
+    width: 100%;
+    li {
+      width: 20%;
+      float: left;
+      text-align: center;
+      color: #888;
+      font-size: 0.28rem;
+      transition: all .5s cubic-bezier(0.4, -0.3, 0.57, 1.38);
+    }
+    li.selected {
+      color: #000;
+      font-size: 0.4rem;
+    }
+  }
+  .slider {
+    position: absolute;
+    bottom: 0;
+    width: 0.3rem;
+    height: 0.1rem;
+    background: #ffcc33;
+    transition: all .5s cubic-bezier(0.4, -0.3, 0.57, 1.38);
+  }
+}
