@@ -3,8 +3,8 @@ import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import Index from "../component/index/index";
 import Recommend from "../component/index/Recommend";
 import App from "../app";
-const history = BrowserRouter;
 
+//React-router4以上版本嵌套路由写法
 const indexParent = ({match})=> (
     <div>
         <Route path={`${match.url}/`} component={Index}/>
@@ -13,8 +13,8 @@ const indexParent = ({match})=> (
 )
 
 const RouteConfig = (
-    <BrowserRouter history={history}>
-        <App>
+    <BrowserRouter>
+        <App> {/*React-router4以前版本嵌套路由写法*/}
                 <Route path="/index" component={indexParent}/>
                 <Redirect from='*' to='/index/recommend'/>
         </App>

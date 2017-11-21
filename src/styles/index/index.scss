@@ -6,6 +6,7 @@
   line-height: 1rem;
   background: #fff;
   border-bottom: #ccc 0.5px solid;
+  z-index: 999;
   ul {
     width: 100%;
     li {
@@ -13,8 +14,8 @@
       float: left;
       text-align: center;
       color: #888;
-      font-size: 0.28rem;
-      transition: all .5s cubic-bezier(0.4, -0.3, 0.57, 1.38);
+      font-size: 0.32rem;
+      transition: all .3s cubic-bezier(0.4, -0.3, 0.57, 1.38);
     }
     li.selected {
       color: #000;

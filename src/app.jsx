@@ -18,11 +18,6 @@ export default class App extends Component {
                     selected: false
                 },
                 {
-                    icon: '\ue605',
-                    text: '发布',
-                    selected: false
-                },
-                {
                     icon: '\ue6ad',
                     icon_selected: '\ue71c',
                     text: '动态',
@@ -37,9 +32,6 @@ export default class App extends Component {
             ]
         };
         this.selectIndexBar = function (index) {
-            if (index === 2) {
-                return
-            }
             this.state.statusBarList.forEach((item,inx)=>{
                 if (inx === index) {
                     item.selected = true
@@ -61,10 +53,11 @@ export default class App extends Component {
 
     render() {
         const liList = this.state.statusBarList.map((item, index) => {
-                return <li key={index} onClick={this.selectIndexBar.bind(this, index)}><p
+               
+                   return <div className="statusBarLi" key={index} onClick={this.selectIndexBar.bind(this, index)}><p
                     className="iconfont">{ item.selected ? item.icon_selected : item.icon }</p>
                     <span>{item.text}</span>
-                </li>
+                    </div> 
             }
         )
         return (
@@ -72,10 +65,18 @@ export default class App extends Component {
                 <div className="routerView">
                     {this.props.children}
                 </div>
-                <div className="statusBar">
-                    <ul>
-                        {liList}
-                    </ul>
+                <div>
+                    <div className="statusBar">
+                        <div className="statusBarUl">
+                            {liList}
+                        </div>
+                    </div>
+                     <div className="upload">
+                         <p
+                        className="iconfont">&#xe605;</p>
+                        <span>发布</span>
+                        <input type="file" accept="image/*"/>
+                     </div> 
                 </div>
             </div>
         )

@@ -66,11 +66,39 @@ export default class Recommend extends Component {
                         <div className="site">
                             <img src={this.state.recommendList[0].site.icon} alt="" className="site_icon"/>
                             <p className="site_name">{this.state.recommendList[0].site.name}</p>
-                            <p className="site_time">{this.state.recommendList[0].published_at}</p>
+                            <p className="site_time">{'一天前'}</p>
                         </div>
                         <div className="iconfont site_gz">&#xe605;关注</div>
                     </div>
                     <div className="img_list">
+                        <img src="https://photo.tuchong.com/1673709/f/25389444.jpg"/>
+                       
+                    </div>
+                    <div className="bottom">
+                        <div className="iconfont favrites">&#xe61b;<span>179</span></div>
+                        <div className="iconfont commit">&#xe629;<span>2</span></div>
+                        <div className="iconfont share">&#xe610;</div>
+                        <div className="iconfont shareMore">&#xe62b;</div>
+                    </div>
+                </div>
+                <div className="recommend_item">
+                    <div className="top">
+                        <div className="site">
+                            <img src={this.state.recommendList[0].site.icon} alt="" className="site_icon"/>
+                            <p className="site_name">{this.state.recommendList[0].site.name}</p>
+                            <p className="site_time">{'一天前'}</p>
+                        </div>
+                        <div className="iconfont site_gz">&#xe605;关注</div>
+                    </div>
+                    <div className="img_list">
+                        <img src="https://photo.tuchong.com/1673709/f/25389444.jpg"/>
+                       
+                    </div>
+                    <div className="bottom">
+                        <div className="iconfont favrites">&#xe61b;<span>179</span></div>
+                        <div className="iconfont commit">&#xe629;<span>2</span></div>
+                        <div className="iconfont share">&#xe610;</div>
+                        <div className="iconfont shareMore">&#xe62b;</div>
                     </div>
                 </div>
             </div>

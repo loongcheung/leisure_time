@@ -1,7 +1,89 @@
 #recommend {
-  padding-top: 1rem;
+  padding:1rem 0;
   background: #efefef;
   .recommend_item {
     background: #fff;
+    margin-top: 0.2rem;
+    
+    .top {
+    	width: 100%;
+    	position: relative;
+    	height: 1.3rem;
+    	.site {
+    		position: absolute;
+    		left: 0.35rem;
+    		top: 50%;
+    		width: 2.4rem;
+    		transform: translateY(-50%);
+    		img {
+    			width: 0.65rem;
+    			height: 0.65rem;
+    			border-radius: 50%;
+    			position: absolute;
+    			left: 0;
+    			top: 50%;
+    			transform: translateY(-50%);
+    		}
+    		.site_name {
+    			font-size: 0.25rem;
+    			position: absolute;
+    			right: 0;
+    			bottom: 0;
+    		}
+    		.site_time {
+    			font-size: 0.2rem;
+    			position: absolute;
+    			left: 0.8rem;
+    			top: 0;
+    			color: #999;
+    		}
+    	}
+    	.site_gz {
+    		position: absolute;
+    		right: 0.35rem;
+    		top: 50%;
+    		transform: translateY(-50%);
+    		font-size: 0.24rem;
+    		color: #ffcc33;
+    	}
+    }
+    .img_list {
+    	img {
+    		max-width: 100%;
+    		max-height: 6.7rem;
+    		display: block;
+    	}
+    }
+    .bottom {
+    	height: 1rem;
+    	width: 100%;
+    	position: relative;
+    	div {
+    		position: absolute;
+    		top: 50%;
+    		transform: translateY(-50%);
+    		font-size: 0.36rem;
+    		line-height: 0.36rem;
+    		span {
+    			color:#999;
+    			font-size: 0.2rem;
+    			margin-left: 0.1rem;
+    			display: block;
+    			float: right;
+      		 }
+    	}
+    	.favrites {
+    		left: 0.35rem;
+    	}
+    	.commit {
+    		left: 1.45rem;
+    	}
+    	.share {
+    		left: 2.55rem;
+    	}
+    	.shareMore {
+    		right: 0.35rem;
+    	}
+    }
   }
 }
