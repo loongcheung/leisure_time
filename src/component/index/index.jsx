@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+
 export default class Recommend extends Component {
     constructor(props) {
         super(props);
@@ -6,29 +7,35 @@ export default class Recommend extends Component {
             navList: [
                 {
                     title: '推荐',
-                    selected: true
+                    selected: true,
+                    link: '/recommend'
                 },
                 {
                     title: '视频',
-                    selected: false
+                    selected: false,
+                    link: '/video'
                 },
                 {
                     title: '关注',
-                    selected: false
+                    selected: false,
+                    link: '/follow'
                 },
                 {
                     title: '热门',
-                    selected: false
+                    selected: false,
+                    link: '/hot'
                 },
                 {
                     title: '最新',
-                    selected: false
+                    selected: false,
+                    link: '/recent'
                 }
             ],
             nowIndex: 0
         };
         this.selectNav = function(index) {
             this.setState({nowIndex:index})
+            this.props.history.push(`/index${this.state.navList[index].link}`)
         }
     }
     render() {

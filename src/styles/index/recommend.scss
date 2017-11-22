@@ -1,10 +1,9 @@
 #recommend {
-  padding:1rem 0;
+  margin:1rem 0 0.8rem 0;
   background: #efefef;
   .recommend_item {
     background: #fff;
-    margin-top: 0.2rem;
-    
+    margin-bottom: 0.2rem;
     .top {
     	width: 100%;
     	position: relative;
@@ -13,7 +12,7 @@
     		position: absolute;
     		left: 0.35rem;
     		top: 50%;
-    		width: 2.4rem;
+    		width: 5.4rem;
     		transform: translateY(-50%);
     		img {
     			width: 0.65rem;
@@ -27,7 +26,7 @@
     		.site_name {
     			font-size: 0.25rem;
     			position: absolute;
-    			right: 0;
+				left: 0.8rem;
     			bottom: 0;
     		}
     		.site_time {
@@ -75,7 +74,7 @@
     	.favrites {
     		left: 0.35rem;
     	}
-    	.commit {
+    	.comments {
     		left: 1.45rem;
     	}
     	.share {
