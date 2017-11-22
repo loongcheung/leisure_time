@@ -20,7 +20,7 @@ export default class Video extends Component {
                         <div className="site_time">10月7日</div>
                     </div>
                     <div className="videoWrap">
-                        <video src="http://baobab.kaiyanapp.com/api/v1/playUrl?vid=19977&editionType=normal&source=qcloud"/>
+                        <video webkit-playsinline="true" playsInline="true" poster={'https://photo.tuchong.com/456012/f/32731848.jpg'} controls src="http://baobab.kaiyanapp.com/api/v1/playUrl?vid=19977&editionType=normal&source=qcloud"/>
                     </div>
                     <div className="bottom">
                         <div className="iconfont watch_num">&#xe601;<span>213</span></div>

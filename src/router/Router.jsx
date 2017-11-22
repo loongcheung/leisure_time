@@ -41,7 +41,7 @@ const RouteConfig = (
     <BrowserRouter>
         <div>
             <Route path='' component={appParent}/>
-            <Redirect from="*" to={'/index/recommend'}/>
+            <Redirect from="/" to="/index/recommend"/>
         </div>
     </BrowserRouter>
 );

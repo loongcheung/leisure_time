@@ -56,7 +56,7 @@ export default class App extends Component {
         const liList = this.state.statusBarList.map((item, index) => {
 
                 return <div className="statusBarLi" key={index} onClick={this.selectIndexBar.bind(this, index)}><p
-                    className="iconfont">{ item.selected ? item.icon_selected : item.icon }</p>
+                    className="iconfont">{item.selected ? item.icon_selected : item.icon}</p>
                     <span>{item.text}</span>
                 </div>
             }
