@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter, Route,Redirect} from "react-router-dom";
 import App from "../app";
 
-import Index from "../component/index/index";
+import Index from "../component/index/Index";
 import Recommend from "../component/index/Recommend";
 import Video from "../component/index/Video";
 import Follow from "../component/index/Follow";

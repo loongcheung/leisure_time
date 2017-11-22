@@ -15,9 +15,9 @@ export default class Video extends Component {
                                 src={'http://img.kaiyanapp.com/f2449da39a584c982866b0636bd30c58.png?imageMogr2/quality/60/format/jpg'}
                                 alt="" className="site_icon"/>
                             <p className="site_name">{'开眼运动精选'}</p>
-                            <p className="site_time">{'1小时前'}</p>
+                            <p className="site_description">{'Erkki Punttila 是一位不善言辞的芬兰骑行运动员，今天带我们去一个「离家不太远」的地方探索游玩，带上行囊出发吧！From Kona Bikes'}</p>
                         </div>
-                        <div className="iconfont site_gz">&#xe605;关注</div>
+                        <div className="site_time">10月7日</div>
                     </div>
                     <div className="videoWrap">
                         <video src="http://baobab.kaiyanapp.com/api/v1/playUrl?vid=19977&editionType=normal&source=qcloud"/>
@@ -35,9 +35,9 @@ export default class Video extends Component {
                                 src={'http://baobab.kaiyanapp.com/api/v1/playUrl?vid=19977&editionType=normal&source=ucloud'}
                                 alt="" className="site_icon"/>
                             <p className="site_name">{'开眼运动精选'}</p>
-                            <p className="site_time">{'1小时前'}</p>
+                            <p className="site_description">{'为广告人的精彩创意点赞'}</p>
                         </div>
-                        <div className="iconfont site_gz">&#xe605;关注</div>
+                        <div className="site_time">10月7日</div>
                     </div>
                     <div className="videoWrap">
                         <video src=""/>

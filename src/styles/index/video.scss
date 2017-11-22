@@ -24,26 +24,30 @@
           transform: translateY(-50%);
         }
         .site_name {
-          font-size: 0.25rem;
+          font-size: 0.14rem;
           position: absolute;
           left: 0.8rem;
           bottom: 0;
+          color: #666;
         }
-        .site_time {
-          font-size: 0.2rem;
+        .site_description {
+          font-size: 0.26rem;
           position: absolute;
           left: 0.8rem;
           top: 0;
-          color: #999;
+          white-space: nowrap;
+          overflow: hidden;
+          width: 4.4rem;
+          text-overflow: ellipsis;
         }
       }
-      .site_gz {
+      .site_time {
         position: absolute;
         right: 0.35rem;
         top: 50%;
         transform: translateY(-50%);
         font-size: 0.24rem;
-        color: #ffcc33;
+        color: #999;
       }
     }
     .videoWrap {
