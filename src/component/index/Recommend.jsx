@@ -28,7 +28,12 @@ export default class Recommend extends Component {
             return showTime
         }
         this.getRecommendList = function () {
-            axios.get('../data/recommend.json').then((res) => {
+            axios.get('http://localhost:8000/recommend',{
+                params: {
+                    page: 1,
+                    type: 'refresh'
+                }
+            }).then((res) => {
                 let data = res.data['feedList'];
                 for (let i = 0; i < data.length; i++) {
                     let recommendItem = {};
