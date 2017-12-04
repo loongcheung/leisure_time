@@ -7,7 +7,7 @@ const app = new Koa();
 const routes = require('./router/index.js');
 
 app.use(async (ctx,next)=>{
-    ctx.set('Access-Control-Allow-Origin','http://localhost:3000');
+    ctx.set('Access-Control-Allow-Origin','*');
     await next();
 });
 

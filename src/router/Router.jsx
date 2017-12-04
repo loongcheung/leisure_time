@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route,Redirect} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import App from "../app";
 
 import Index from "../component/index/Index";
@@ -18,7 +18,7 @@ const appParent = ({match})=>(
         <Route path={`${match.url}index`} component={indexParent}/>
         <Route path={`${match.url}find`} component={findParent}/>
     </div>
-)
+);
 
 const indexParent = ({match})=> (
     <div>
@@ -35,13 +35,12 @@ const findParent = ({match})=> (
     <div>
         <Route path={`${match.url}/`} component={FindIndex}/>
     </div>
-)
+);
 
 const RouteConfig = (
-    <BrowserRouter>
+    <BrowserRouter to={'./index/recommend'}>
         <div>
             <Route path='' component={appParent}/>
-            <Redirect from="/" to="/index/recommend"/>
         </div>
     </BrowserRouter>
 );

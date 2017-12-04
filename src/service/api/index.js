@@ -4,7 +4,7 @@
 
 const request = require('superagent');
 
-async function picSpider(query) {
+async function getRecommend(query) {
     let page = '';
     let type = '';
     let post_id = '';
@@ -32,8 +32,13 @@ async function picSpider(query) {
     });
 }
 
+async function getVideos() {
+    return request('GET','http://baobab.kaiyanapp.com/api/v4/tabs/selected')
+}
+
 const api = {
-    recommend: picSpider
+    recommend: getRecommend,
+    getVideos
 };
 
 module.exports = api;

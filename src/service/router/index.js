@@ -11,4 +11,10 @@ router.get('/recommend',async (ctx,next)=>{
     await next();
 });
 
+router.get('/videos',async (ctx,next)=>{
+    await api.getVideos().then((res)=>{
+        ctx.response.body = res.body;
+    });
+    await next();
+});
 module.exports = router.routes();

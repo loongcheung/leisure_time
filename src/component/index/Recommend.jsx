@@ -17,8 +17,8 @@ export default class Recommend extends Component {
             photoSwipeItems: [],
             post_id: '',//翻页值，为上一页最后一个的
             page: 2,
-            isLoading : false, //正在下拉刷新
-            refreshY : 1 //刷新下拉距离
+            refreshY: 0,//刷新下拉距离
+            pageY_start: 0,
         };
         this.getTimeDiff = function (publish_time) {
             let nowTime = new Date().getTime();
@@ -41,7 +41,7 @@ export default class Recommend extends Component {
             return showTime
         };
         this.getRecommendList = function (page = 1, type = 'refresh', post_id = '') {
-            axios.get('http://192.168.47.226:8000/recommend', {
+            axios.get('http://192.168.1.3:8000/recommend', {
                 params: {
                     page,
                     type,
@@ -49,6 +49,9 @@ export default class Recommend extends Component {
                 }
             }).then((res) => {
                 let data = res.data['feedList'];
+                if (type === 'refresh') {
+                    this.setState({recommendList: []});
+                }
                 for (let i = 0; i < data.length; i++) {
                     let recommendItem = {};
                     recommendItem.post_id = data[i]['post_id'];
@@ -61,7 +64,8 @@ export default class Recommend extends Component {
                 }
                 this.setState({
                     recommendList: this.state.recommendList,
-                    post_id: this.state.recommendList[this.state.recommendList.length - 1]['post_id']
+                    post_id: this.state.recommendList[this.state.recommendList.length - 1]['post_id'],
+                    refreshY: 0
                 });
                 localStorage.setItem('shouldRefresh', JSON.stringify(this.state.recommendList));
             })
@@ -83,14 +87,30 @@ export default class Recommend extends Component {
         this.handleClose = function () {
             this.setState({isOpen: false})
         };
-        this.refreshMove =function () {
-            if (document.documentElement.scrollTop === 0) {
-                //this.setState({refreshY: this.state.refreshY+1})
+        this.refreshMove = function (event) {
+            if (document.documentElement.scrollTop <= 100) {
+                let touch = event.touches[0];
+                switch (event.type) {
+                    case 'touchstart':
+                        this.setState({pageY_start: touch.pageY});
+                        break;
+                    case 'touchmove':
+                        this.setState({
+                            refreshY: this.state.refreshY + touch.pageY - this.state.pageY_start,
+                            pageY_start: touch.pageY
+                        });
+                        break;
+                    case 'touchend':
+                        if (this.state.refreshY < 70) {
+                            this.setState({refreshY: 0});
+                        } else {
+                            this.setState({refreshY: 70});
+                            this.getRecommendList()
+                        }
+                        break;
+                }
             }
         };
-        this.refreshEnd = function () {
-
-        }
     }
 
     componentDidMount() {
@@ -102,7 +122,7 @@ export default class Recommend extends Component {
         let _this = this;
         Load.loadMore(document, function () {  //到达底部加载更多
             _this.getRecommendList(_this.state.page, 'loadmore', _this.state.post_id);
-            _this.setState({page: _this.state.page+1});
+            _this.setState({page: _this.state.page + 1});
         })
     }
 
@@ -140,7 +160,9 @@ export default class Recommend extends Component {
         return (
             <div id="recommend">
                 <LoadComponent/>
-                <div className="ulList" onTouchMove={this.refreshMove.bind(this)} onTouchEnd={this.refreshEnd.bind(this)} style={{transform:`translateY(${this.state.refreshY}rem)`}}>
+                <div className="ulList" onTouchStart={this.refreshMove.bind(this)}
+                     onTouchMove={this.refreshMove.bind(this)} onTouchEnd={this.refreshMove.bind(this)}
+                     style={{transform: `translate3d(0,${this.state.refreshY}px,0)`}}>
                     {RecommendItems}
                 </div>
                 <PhotoSwipe isOpen={this.state.isOpen} items={this.state.photoSwipeItems} options={this.state.options}
