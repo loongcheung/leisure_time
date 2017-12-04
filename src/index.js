@@ -12,5 +12,9 @@ import './styles/index/hot.scss'
 import './styles/index/recent.scss'
 import registerServiceWorker from './registerServiceWorker';
 
+import 'react-photoswipe/lib/photoswipe.css'
+
+import './styles/loading.scss'
+
 ReactDOM.render(route, document.getElementById('root'));
 registerServiceWorker();

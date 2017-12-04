@@ -6,7 +6,7 @@ const api = require('../api/index.js');
 
 router.get('/recommend',async (ctx,next)=>{
     await api.recommend(ctx.query).then((res)=>{
-        ctx.response.body = res.body;
+        ctx.response.body = res;
     });
     await next();
 });
