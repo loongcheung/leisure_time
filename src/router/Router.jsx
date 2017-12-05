@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Route, Redirect} from "react-router-dom";
 import App from "../app";
 
 import Index from "../component/index/Index";
@@ -10,6 +10,8 @@ import Hot from "../component/index/Hot";
 import Recent from "../component/index/Recent";
 
 import FindIndex from "../component/find/Index";
+
+import ImageWaterfall from "../component/common/ImageWaterfall"
 
 //React-router4以上版本嵌套路由写法
 const appParent = ({match})=>(
@@ -38,9 +40,10 @@ const findParent = ({match})=> (
 );
 
 const RouteConfig = (
-    <BrowserRouter to={'./index/recommend'}>
+    <BrowserRouter>
         <div>
-            <Route path='' component={appParent}/>
+            <Route path='' component={ImageWaterfall}/>
+          {/*  <Redirect from={''} to={'index/recommend'}/>*/}
         </div>
     </BrowserRouter>
 );
