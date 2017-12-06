@@ -34,7 +34,7 @@ export default class Index extends Component {
             nowIndex: 0
         };
         this.selectNav = function(index) {
-            this.setState({nowIndex:index})
+            this.setState({nowIndex:index});
             this.props.history.push(`/index${this.state.navList[index].link}`)
         }
     }

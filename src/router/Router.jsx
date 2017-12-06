@@ -42,8 +42,8 @@ const findParent = ({match})=> (
 const RouteConfig = (
     <BrowserRouter>
         <div>
-            <Route path='' component={ImageWaterfall}/>
-          {/*  <Redirect from={''} to={'index/recommend'}/>*/}
+            <Route path='' component={appParent}/>
+            <Redirect from={''} to={'/index/recommend'}/>
         </div>
     </BrowserRouter>
 );

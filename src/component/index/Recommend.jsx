@@ -3,6 +3,7 @@ import axios from "axios";
 import {PhotoSwipe} from "react-photoswipe";
 import {Load} from "../../tools/loadmore";
 import LoadComponent from "../common/Load";
+import ImageWaterfall from "../common/ImageWaterfall";
 
 export default class Recommend extends Component {
     constructor(props) {
@@ -10,13 +11,20 @@ export default class Recommend extends Component {
         this.state = {
             recommendList: [],
             isOpen: false,
-            options: {
+            photoSwipeOptions: {
+                index: 0,
                 shareEl: false,
                 fullscreenEl: false
             },
             photoSwipeItems: [],
             post_id: '',//翻页值，为上一页最后一个的
-            page: 2
+            page: 2,
+            ImageWaterfallOptions: {
+                showNum: 4,
+                showAll: false,
+                maxWidth: window.screen.width,
+                maxHeight: window.screen.height
+            }
         };
         this.getTimeDiff = function (publish_time) {
             let nowTime = new Date().getTime();
@@ -67,23 +75,30 @@ export default class Recommend extends Component {
                 localStorage.setItem('shouldRefresh', JSON.stringify(this.state.recommendList));
             })
         };
-        this.openIndexPhotoSwiper = function (event) {
-            this.setState({photoSwipeItems: this.state.photoSwipeItems === [] ? this.state.photoSwipeItems : this.state.photoSwipeItems.splice(0, this.state.photoSwipeItems.length)});//清空state,使每一次都只包含当前的图片
-            for (let i = 0; i < this.state.recommendList[event.target.dataset.index]['images'].length; i++) {
-                let photoSwipeItem = {};
-                photoSwipeItem.w = this.state.recommendList[event.target.dataset.index]['images'][i].width;
-                photoSwipeItem.h = this.state.recommendList[event.target.dataset.index]['images'][i].height;
-                photoSwipeItem.src = `https://photo.tuchong.com/${this.state.recommendList[event.target.dataset.index]['images'][i].user_id}/f/${this.state.recommendList[event.target.dataset.index]['images'][i].img_id}.jpg`
-                this.state.photoSwipeItems.push(photoSwipeItem);
-            }
-            this.setState({
-                photoSwipeItems: this.state.photoSwipeItems,
-                isOpen: true
-            })
-        };
         this.handleClose = function () {
             this.setState({isOpen: false})
         };
+    }
+
+    openIndexPhotoSwiper = function (imgList, index) {//imgList:对应图片组  index:当前点击的图片
+        this.setState({photoSwipeItems: this.state.photoSwipeItems === [] ? this.state.photoSwipeItems : this.state.photoSwipeItems.splice(0, this.state.photoSwipeItems.length)});//清空state,使每一次都只包含当前的图片
+        let photoSwipeItems = imgList.map((item) => {
+            return {
+                src: item.src,
+                w: item.width,
+                h: item.height
+            }
+        });
+        this.state.photoSwipeOptions.index = index;
+        this.setState({
+            photoSwipeOptions: this.state.photoSwipeOptions,
+            photoSwipeItems: photoSwipeItems,
+            isOpen: true
+        });
+    };
+
+    clickLoadMoreCallback() {
+        console.log('clickloadmore....')
     }
 
     componentDidMount() {
@@ -102,11 +117,20 @@ export default class Recommend extends Component {
         });
     }
 
+    componentWillUnmount() {
+        this.setState = () => {  //页面卸载时重写setState方法，解决页面卸载时异步setState还在执行的问题
+            return false
+        };
+    }
+
     render() {
         let RecommendItems = [];
         if (this.state.recommendList) {
             RecommendItems = this.state.recommendList.map((item, index) => {
                 if (item.images) {
+                    item.images.forEach((item) => {
+                        item.src = `https://photo.tuchong.com/${item.user_id}/f/${item.img_id}.jpg`
+                    });
                     return (
                         <div className="recommend_item" key={index}>
                             <div className="top">
@@ -118,9 +142,9 @@ export default class Recommend extends Component {
                                 <div className="iconfont site_gz">&#xe605;关注</div>
                             </div>
                             <div className="img_list">
-                                <img data-index={index} onClick={this.openIndexPhotoSwiper.bind(this)}
-                                     src={`https://photo.tuchong.com/${item.images[0].user_id}/f/${item.images[0].img_id}.jpg`}
-                                     alt=""/>
+                                <ImageWaterfall options={this.state.ImageWaterfallOptions} imgList={item.images}
+                                                clickLoadMore={this.clickLoadMoreCallback.bind(this)}
+                                                openPhotoSwiper={this.openIndexPhotoSwiper.bind(this)}/>
                             </div>
                             <div className="bottom">
                                 <div className="iconfont favrites">&#xe61b;<span>{item.favorites}</span></div>
@@ -139,7 +163,8 @@ export default class Recommend extends Component {
                 <div className="ulList">
                     {RecommendItems}
                 </div>
-                <PhotoSwipe isOpen={this.state.isOpen} items={this.state.photoSwipeItems} options={this.state.options}
+                <PhotoSwipe isOpen={this.state.isOpen} items={this.state.photoSwipeItems}
+                            options={this.state.photoSwipeOptions}
                             onClose={this.handleClose.bind(this)}/>
             </div>
         );
