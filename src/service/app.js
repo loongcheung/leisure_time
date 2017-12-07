@@ -11,8 +11,6 @@ app.use(async (ctx,next)=>{
     await next();
 });
 
-
-
 app.use(routes);
 
 app.listen(8000);

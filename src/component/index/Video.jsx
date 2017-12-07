@@ -4,7 +4,9 @@ export default class Video extends Component {
     constructor(props) {
         super(props);
     }
-
+    componentDidMount() {
+        console.log(this)
+    }
     render() {
         return (
             <div id="video">

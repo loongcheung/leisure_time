@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import axios from "axios";
 import {PhotoSwipe} from "react-photoswipe";
-import {Load} from "../../tools/loadmore";
+import {Tool} from "../../tools/tools";
 import LoadComponent from "../common/Load";
 import ImageWaterfall from "../common/ImageWaterfall";
 
@@ -26,26 +26,6 @@ export default class Recommend extends Component {
                 maxHeight: window.screen.height
             }
         };
-        this.getTimeDiff = function (publish_time) {
-            let nowTime = new Date().getTime();
-            let diffTime = (nowTime - publish_time) / (60 * 1000 * 60 * 24);
-            let showTime = '';
-            if (diffTime < 1) {
-                diffTime = (nowTime - publish_time) / (60 * 1000 * 60);
-                if (diffTime > 12) {
-                    showTime = '半天前'
-                } else {
-                    if (diffTime < 1) {
-                        showTime = '刚刚';
-                    } else {
-                        showTime = `${Math.floor(diffTime)}小时前`
-                    }
-                }
-            } else {
-                showTime = `${Math.floor(diffTime)}天前`
-            }
-            return showTime
-        };
         this.getRecommendList = function (page = 1, type = 'refresh', post_id = '') {
             axios.get('http://192.168.47.226:8000/recommend', {
                 params: {
@@ -61,7 +41,7 @@ export default class Recommend extends Component {
                 for (let i = 0; i < data.length; i++) {
                     let recommendItem = {};
                     recommendItem.post_id = data[i]['post_id'];
-                    recommendItem.publish_at = this.getTimeDiff(new Date(data[i]['published_at']).getTime());
+                    recommendItem.publish_at = Tool.getTimeDiff(data[i]['published_at']);
                     recommendItem.favorites = data[i]['favorites'];
                     recommendItem.comments = data[i]['comments'];
                     recommendItem.site = data[i]['site'];
@@ -97,27 +77,31 @@ export default class Recommend extends Component {
         });
     };
 
-    clickLoadMoreCallback() {
-        console.log('clickloadmore....')
+    clickLoadMoreCallback(images) {
+        localStorage.setItem('imgList', JSON.stringify(images));
+        this.props.history.push(`/detail/image`);
     }
 
     componentDidMount() {
+        console.log(this)
         if (!localStorage.getItem('shouldRefresh')) {  //创建缓存，如果用户不是主动刷新则不重复请求后台，防止路由切换不停的要请求后台
             this.getRecommendList();
         } else {
             this.setState({recommendList: JSON.parse(localStorage.getItem('shouldRefresh'))});
         }
         let _this = this;
-        Load.loadMore(document, function () {  //到达底部加载更多
+        Tool.loadMore(document, function () {  //到达底部加载更多
             _this.getRecommendList(_this.state.page, 'loadmore', _this.state.post_id);
             _this.setState({page: _this.state.page + 1});
         });
-        Load.refresh(document.querySelector('.ulList'), function () {  //下拉刷新
+        Tool.refresh(document.querySelector('.ulList'), function () {  //下拉刷新
             _this.getRecommendList();
         });
     }
 
     componentWillUnmount() {
+        document.documentElement.scrollTop = 0;
+        document.onscroll = ()=>{}  //页面卸载取消到达底部处理
         this.setState = () => {  //页面卸载时重写setState方法，解决页面卸载时异步setState还在执行的问题
             return false
         };
@@ -143,7 +127,7 @@ export default class Recommend extends Component {
                             </div>
                             <div className="img_list">
                                 <ImageWaterfall options={this.state.ImageWaterfallOptions} imgList={item.images}
-                                                clickLoadMore={this.clickLoadMoreCallback.bind(this)}
+                                                clickLoadMore={this.clickLoadMoreCallback.bind(this, item.images)}
                                                 openPhotoSwiper={this.openIndexPhotoSwiper.bind(this)}/>
                             </div>
                             <div className="bottom">

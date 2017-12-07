@@ -1,12 +1,12 @@
 @import "./iconfont/demo.css";
 
 @font-face {
-  font-family: 'iconfont';
-  src: url('./iconfont/iconfont.eot');
-  src: url('./iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
-  url('./iconfont/iconfont.woff') format('woff'),
-  url('./iconfont/iconfont.ttf') format('truetype'),
-  url('./iconfont/iconfont.svg#iconfont') format('svg');
+  font-family: 'iconfont';  /* project id 481761 */
+  src: url('//at.alicdn.com/t/font_481761_8ebxwyjdwajaif6r.eot');
+  src: url('//at.alicdn.com/t/font_481761_8ebxwyjdwajaif6r.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_481761_8ebxwyjdwajaif6r.woff') format('woff'),
+  url('//at.alicdn.com/t/font_481761_8ebxwyjdwajaif6r.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_481761_8ebxwyjdwajaif6r.svg#iconfont') format('svg');
 }
 
 .iconfont{
@@ -24,7 +24,7 @@
     width: 100%;
     height: 1rem;
     background: #fff;
-    border-top: #ccc 0.5px solid;
+    border-top: #efefef 0.5px solid;
     position: fixed;
     left: 0;
     right: 0;
@@ -57,8 +57,8 @@
         z-index: 1000;
         bottom: -0.2rem;
         text-align: center;
-        border-radius:30%;
-        border-top: #ccc 0.5px solid;
+        border-radius:50%;
+        border-top: #efefef 0.5px solid;
         padding-top: 0.3rem;
         left: 50%;
          p {

@@ -44,7 +44,7 @@ export default class App extends Component {
                 }
             });
             this.setState({statusBarList: this.state.statusBarList});
-            this.props.history.push(this.state.statusBarList[index]['link'])
+            this.props.history.push(`/page${this.state.statusBarList[index]['link']}`)
         };
     }
 
