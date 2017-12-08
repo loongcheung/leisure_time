@@ -1,4 +1,3 @@
-import React, {Component} from "react";
 /*
  * Component ImageWaterfall 移动端瀑布流图片组件（等高不等宽）
  * @param imgList<Array>  图片集合数组，每个元素必须包括src,width,height
@@ -7,7 +6,10 @@ import React, {Component} from "react";
  * @param openPhotoSwiper<Function>  查看图片回调(与react-photoswipe配合使用)
  * */
 
-export default class ImageWaterfall extends Component {
+import React, {Component} from "react";
+import template from "../template"
+
+class ImageWaterfall extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -69,3 +71,8 @@ export default class ImageWaterfall extends Component {
         )
     }
 }
+
+export default template({
+    id: 'imageWaterfall',
+    component: ImageWaterfall
+});

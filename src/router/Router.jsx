@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Redirect, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Redirect} from "react-router-dom";
 import App from "../app";
 
 import Index from "../component/index/Index";
@@ -11,8 +11,8 @@ import Recent from "../component/index/Recent";
 
 import FindIndex from "../component/find/Index";
 
-
 import ImageDetails from '../component/details/ImageDetails'
+
 /*组件根路由*/
 const Root = ({match}) => (
     <div>
@@ -26,7 +26,7 @@ const detail = ({match})=> (
     <div>
         <Route path={`${match.url}/image`} component={ImageDetails}/>
     </div>
-)
+);
 
 /*页面路由*/
 const appParent = ({match})=>(

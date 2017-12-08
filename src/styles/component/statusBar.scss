@@ -1,5 +1,28 @@
 #StatusBar {
-  background: #fff;
-  height: 1rem;
+  line-height: 1rem;
   width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1px #efefef solid;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  color: #333;
+  .back,.moreOption {
+    flex: 1;
+    text-align: left;
+    font-size: 0.45rem;
+  }
+  .back {
+    text-indent: 0.3rem;
+  }
+  .moreOption {
+    text-indent: 1.3rem;
+  }
+  .title {
+    text-align: center;
+    font-size: 0.3rem;
+    flex: 2;
+  }
 }

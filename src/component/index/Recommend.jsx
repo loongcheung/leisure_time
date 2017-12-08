@@ -4,8 +4,9 @@ import {PhotoSwipe} from "react-photoswipe";
 import {Tool} from "../../tools/tools";
 import LoadComponent from "../common/Load";
 import ImageWaterfall from "../common/ImageWaterfall";
+import template from "../template"
 
-export default class Recommend extends Component {
+class Recommend extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,13 +78,12 @@ export default class Recommend extends Component {
         });
     };
 
-    clickLoadMoreCallback(images) {
-        localStorage.setItem('imgList', JSON.stringify(images));
+    clickLoadMoreCallback(images,site,publish_at) {
+        this.props.getImageDetailData({images,site,'publish_at': publish_at});  //触发action，详情页去store的值
         this.props.history.push(`/detail/image`);
     }
 
     componentDidMount() {
-        console.log(this)
         if (!localStorage.getItem('shouldRefresh')) {  //创建缓存，如果用户不是主动刷新则不重复请求后台，防止路由切换不停的要请求后台
             this.getRecommendList();
         } else {
@@ -127,7 +127,7 @@ export default class Recommend extends Component {
                             </div>
                             <div className="img_list">
                                 <ImageWaterfall options={this.state.ImageWaterfallOptions} imgList={item.images}
-                                                clickLoadMore={this.clickLoadMoreCallback.bind(this, item.images)}
+                                                clickLoadMore={this.clickLoadMoreCallback.bind(this, item.images, item.site, item.publish_at)}
                                                 openPhotoSwiper={this.openIndexPhotoSwiper.bind(this)}/>
                             </div>
                             <div className="bottom">
@@ -154,3 +154,8 @@ export default class Recommend extends Component {
         );
     }
 }
+
+export default template({
+    id: 'recommend',
+    component: Recommend
+});

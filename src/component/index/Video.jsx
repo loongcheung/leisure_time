@@ -5,7 +5,7 @@ export default class Video extends Component {
         super(props);
     }
     componentDidMount() {
-        console.log(this)
+
     }
     render() {
         return (

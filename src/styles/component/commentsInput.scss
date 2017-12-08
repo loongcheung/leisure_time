@@ -1,0 +1,56 @@
+#commentsInput {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  line-height: 0.96rem;
+  border-top: 1px #efefef solid;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  .input {
+    flex: 5;
+    input {
+      outline: none;
+      color: #333;
+      border-radius: 0.5rem;
+      border: 1px #efefef solid;
+      background: #f7f7f7;
+      margin-left: 0.3rem;
+      width: 90%;
+      line-height: 0.5rem;
+      text-indent: 0.3rem;
+      font-size: 0.26rem;
+    }
+  }
+  .options {
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+    .likes,.share {
+      color: #333;
+      flex: 1;
+      text-align: center;
+      font-size: 0.45rem;
+    }
+    .liked {
+      color: #d81e06;
+    }
+  }
+  .send {
+    flex: 1;
+    font-size: 0.29rem;
+    border-radius: 0.3rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    width: 1rem;
+    text-align: center;
+    color: #fff;
+    background: #ccc;
+    transform: translateY(0.22rem);
+    margin-right: 0.3rem;
+  }
+  .canSend {
+    color: #fff;
+    background: #ffcc33;
+  }
+}

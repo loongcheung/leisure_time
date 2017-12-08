@@ -1,13 +1,16 @@
 import React, {Component} from "react";
+import StatusBar from "../common/StatusBar";
 import ImageWaterfall from "../common/ImageWaterfall";
 import Comments from "../common/Comments";
-import StatusBar from "../common/StatusBar";
+import CommentsInput from "../common/CommentsInput"
 import {PhotoSwipe} from "react-photoswipe";
+import template from "../template"
 
-export default class ImageDetails extends Component {
+class ImageDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            title: '详情',
             isOpen: false,
             photoSwipeOptions: {
                 index: 0,
@@ -50,11 +53,22 @@ export default class ImageDetails extends Component {
     }
 
     render() {
+        const {site,images,publish_at} = this.props.imageData;
         return (
-            <div>
-                <StatusBar/>
-                <ImageWaterfall options={this.state.ImageWaterfallOptions} imgList={JSON.parse(localStorage.getItem('imgList'))} openPhotoSwiper={this.openIndexPhotoSwiper.bind(this)}/>
-                <Comments/>
+            <div id="imageDetail">
+                <StatusBar title={this.state.title}/>
+                <div style={{marginTop: '1rem'}}>
+                    <div className="site_info">
+                        <div className="site">
+                            <img src={site.icon} alt="" className="site_icon"/>
+                            <p className="site_name">{site.name}</p>
+                            <p className="site_time">{publish_at}</p>
+                        </div>
+                    </div>
+                    <ImageWaterfall options={this.state.ImageWaterfallOptions} imgList={images} openPhotoSwiper={this.openIndexPhotoSwiper.bind(this)}/>
+                    <Comments/>
+                    <CommentsInput/>
+                </div>
                 <PhotoSwipe isOpen={this.state.isOpen} items={this.state.photoSwipeItems}
                             options={this.state.photoSwipeOptions}
                             onClose={this.handleClose.bind(this)}/>
@@ -62,3 +76,9 @@ export default class ImageDetails extends Component {
         )
     }
 }
+
+
+export default template({
+    id: 'imageDetail',
+    component: ImageDetails
+});
