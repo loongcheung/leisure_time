@@ -28,7 +28,7 @@ class Recommend extends Component {
             }
         };
         this.getRecommendList = function (page = 1, type = 'refresh', post_id = '') {
-            axios.get('http://192.168.47.226:8000/recommend', {
+            axios.get('http://localhost:8000/recommend', {
                 params: {
                     page,
                     type,
@@ -47,7 +47,7 @@ class Recommend extends Component {
                     recommendList: this.state.recommendList,
                     post_id: this.state.recommendList[this.state.recommendList.length - 1]['post_id']
                 });
-                localStorage.setItem('shouldRefresh', JSON.stringify(this.state.recommendList));
+                localStorage.setItem('shouldRefresh', encodeURIComponent(JSON.stringify(this.state.recommendList)));
             })
         };
         this.handleClose = function () {
@@ -83,7 +83,7 @@ class Recommend extends Component {
         if (!localStorage.getItem('shouldRefresh')) {  //创建缓存，如果用户不是主动刷新则不重复请求后台，防止路由切换不停的要请求后台
             this.getRecommendList();
         } else {
-            this.setState({recommendList: JSON.parse(localStorage.getItem('shouldRefresh'))});
+            this.setState({recommendList: JSON.parse(decodeURIComponent(localStorage.getItem('shouldRefresh')))});
         }
         let _this = this;
         Tool.loadMore(document, function () {  //到达底部加载更多

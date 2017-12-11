@@ -26,7 +26,7 @@ class ImageDetails extends Component {
                 maxHeight: window.screen.height
             },
             commentOptions: {
-                comments : 0,
+                comments: 0,
                 sort_by: 0,
                 commentList: []
             }
@@ -77,12 +77,39 @@ class ImageDetails extends Component {
     }
 
     render() {
-        const {site,images,published_at,title,event_tags,tags} = this.props.imageData;
+        const {site, images, published_at, title, event_tags, tags, content} = this.props.imageData;
+
+        //图片及标签信息
+        const tag_list = tags.map((value, index) => {
+            if (event_tags.length > 0 && index < event_tags.length) {
+                return (
+                    <div key={index} className="pro_info-tag_list-tags pro_info-tag_list-event_tags">{value}</div>
+                )
+            } else {
+                return (
+                    <div key={index} className="pro_info-tag_list-tags">{value}</div>
+                )
+            }
+        });
         const pro_info = (
             <div className="pro_info">
                 <div className="pro_info-title">{title}</div>
+                <div className="pro_info-des">{content}</div>
+                <div className="pro_info-tag_list">
+                    {tag_list}
+                </div>
             </div>
         );
+
+        //打赏
+        const likes = (
+            <div className="reward">
+                <div className="reward_title"><span className="iconfont">&#xe611;</span><span>点赞是美德，打赏是鼓励</span><span className="iconfont">&#xe6ab;</span></div>
+                <div className="reward_btn">打赏</div>
+                <div className="reward_des">还没有人打赏，快来当第一个打赏的人吧!</div>
+            </div>
+        );
+
         return (
             <div id="imageDetail">
                 <StatusBar title={this.state.title}/>
@@ -94,9 +121,12 @@ class ImageDetails extends Component {
                             <p className="site_time">{published_at}</p>
                         </div>
                     </div>
-                    <ImageWaterfall options={this.state.ImageWaterfallOptions} imgList={images} openPhotoSwiper={this.openIndexPhotoSwiper.bind(this)}/>
-
-                    <Comments commentOptions={this.state.commentOptions} toggleSort={this.toggleCommentsSort.bind(this)}/>
+                    <ImageWaterfall options={this.state.ImageWaterfallOptions} imgList={images}
+                                    openPhotoSwiper={this.openIndexPhotoSwiper.bind(this)}/>
+                    {pro_info}
+                    {likes}
+                    <Comments commentOptions={this.state.commentOptions}
+                              toggleSort={this.toggleCommentsSort.bind(this)}/>
                     <CommentsInput/>
                 </div>
                 <PhotoSwipe isOpen={this.state.isOpen} items={this.state.photoSwipeItems}
