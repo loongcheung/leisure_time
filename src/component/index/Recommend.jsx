@@ -4,7 +4,7 @@ import {PhotoSwipe} from "react-photoswipe";
 import {Tool} from "../../tools/tools";
 import LoadComponent from "../common/Load";
 import ImageWaterfall from "../common/ImageWaterfall";
-import template from "../template"
+import template from "../template";
 
 class Recommend extends Component {
     constructor(props) {
@@ -40,14 +40,8 @@ class Recommend extends Component {
                     this.setState({recommendList: []});
                 }
                 for (let i = 0; i < data.length; i++) {
-                    let recommendItem = {};
-                    recommendItem.post_id = data[i]['post_id'];
-                    recommendItem.publish_at = Tool.getTimeDiff(data[i]['published_at']);
-                    recommendItem.favorites = data[i]['favorites'];
-                    recommendItem.comments = data[i]['comments'];
-                    recommendItem.site = data[i]['site'];
-                    recommendItem.images = data[i]['images'];
-                    this.state.recommendList.push(recommendItem);
+                    data[i]['published_at'] = Tool.getTimeDiff(data[i]['published_at']);
+                    this.state.recommendList.push(data[i]);
                 }
                 this.setState({
                     recommendList: this.state.recommendList,
@@ -78,9 +72,11 @@ class Recommend extends Component {
         });
     };
 
-    clickLoadMoreCallback(images,site,publish_at) {
-        this.props.getImageDetailData({images,site,'publish_at': publish_at});  //触发action，详情页去store的值
-        this.props.history.push(`/detail/image`);
+    clickLoadMoreCallback(item, event) {
+        if (event.target === event.currentTarget) {
+            this.props.getImageDetailData(item);  //触发action，详情页取store的值
+            this.props.history.push(`/detail/image`);
+        }
     }
 
     componentDidMount() {
@@ -101,7 +97,8 @@ class Recommend extends Component {
 
     componentWillUnmount() {
         document.documentElement.scrollTop = 0;
-        document.onscroll = ()=>{}  //页面卸载取消到达底部处理
+        document.onscroll = () => {
+        }  //页面卸载取消到达底部处理
         this.setState = () => {  //页面卸载时重写setState方法，解决页面卸载时异步setState还在执行的问题
             return false
         };
@@ -117,20 +114,20 @@ class Recommend extends Component {
                     });
                     return (
                         <div className="recommend_item" key={index}>
-                            <div className="top">
+                            <div className="top" onClick={this.clickLoadMoreCallback.bind(this, item)}>
                                 <div className="site">
                                     <img src={item.site.icon} alt="" className="site_icon"/>
                                     <p className="site_name">{item.site.name}</p>
-                                    <p className="site_time">{item.publish_at}</p>
+                                    <p className="site_time">{item.published_at}</p>
                                 </div>
                                 <div className="iconfont site_gz">&#xe605;关注</div>
                             </div>
                             <div className="img_list">
                                 <ImageWaterfall options={this.state.ImageWaterfallOptions} imgList={item.images}
-                                                clickLoadMore={this.clickLoadMoreCallback.bind(this, item.images, item.site, item.publish_at)}
+                                                clickLoadMore={this.clickLoadMoreCallback.bind(this, item)}
                                                 openPhotoSwiper={this.openIndexPhotoSwiper.bind(this)}/>
                             </div>
-                            <div className="bottom">
+                            <div className="bottom" onClick={this.clickLoadMoreCallback.bind(this, item)}>
                                 <div className="iconfont favrites">&#xe61b;<span>{item.favorites}</span></div>
                                 <div className="iconfont comments">&#xe629;<span>{item.comments}</span></div>
                                 <div className="iconfont share">&#xe610;</div>

@@ -1,6 +1,5 @@
 #comments {
-
-  padding: 0 0.35rem;
+  padding: 0 0.35rem 1.5rem 0.35rem;
   .header {
     color: #666;
     font-size: 0.26rem;
@@ -77,21 +76,26 @@
     }
     .sub_comments {
       background: #f7f7f7;
-      ul {
-        li {
+      .sub_notes {
+        .sub_item {
           .site_name {
             float: left;
           }
           line-height: 0.6rem;
           word-wrap: break-word;
         }
-      }
-      .more_comments {
-        line-height: 0.6rem;
-        span {
-          color: #4682B4;
+        .more_comments {
+          line-height: 0.6rem;
+          span {
+            color: #4682B4;
+          }
         }
       }
     }
+  }
+  .no_comment {
+    color: #333;
+    text-align: center;
+    font-size: 0.26rem;
   }
 }

@@ -38,7 +38,7 @@ class CommentsInput extends Component {
 
     inputChanged(event) {
         this.setState({commentValue: event.target.value});
-        if (event.target.value > 0) {
+        if (event.target.value.length > 0) {
            this.setState({canSend: true})
         }else {
             this.setState({canSend: false})
@@ -81,7 +81,7 @@ class CommentsInput extends Component {
         }
         return (
             <div id="commentsInput">
-                <div className="input"><input value={this.state.commentValue} onInput={this.inputChanged.bind(this)} onBlur={this.inputBlured.bind(this)}
+                <div className="input"><input value={this.state.commentValue} onChange={this.inputChanged.bind(this)} onBlur={this.inputBlured.bind(this)}
                                               onFocus={this.inputFocused.bind(this)} type="text" placeholder={this.state.focus ? '发评论...' : '写评论...'}/>
                 </div>
                 {commentOptions}

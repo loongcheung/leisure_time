@@ -34,7 +34,6 @@ async function getRecommend(query) {  //获取推荐图片
 
 async function getComments(query) {  //获取评论
     let {post_id,sort_by,_rticket,page} = query;
-    console.log(query)
     return new Promise((resolve, reject) => {
        request.get(`https://api.tuchong.com/2/posts/${post_id}/comments`).query({
            sort_by,
