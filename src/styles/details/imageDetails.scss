@@ -1,25 +1,27 @@
+@mixin vertical_mid() {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 #imageDetail {
+  position: relative;
   .imageDetail_site_info {
     width: 100%;
     position: relative;
     height: 1.3rem;
     .site {
-      position: absolute;
       left: 0.35rem;
-      top: 50%;
       width: 5.4rem;
-      transform: translateY(-50%);
+      @include vertical_mid;
       img {
         width: 0.65rem;
         height: 0.65rem;
         border-radius: 50%;
-        position: absolute;
         left: 0;
-        top: 50%;
-        transform: translateY(-50%);
+        @include vertical_mid;
       }
       .site_name {
-        font-size: 0.14rem;
+        font-size: 0.24rem;
         position: absolute;
         left: 1rem;
         bottom: 0;
@@ -101,5 +103,11 @@
       color: #666;
       font-size: 0.24rem;
     }
+  }
+  .moreLoading {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

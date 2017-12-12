@@ -14,8 +14,11 @@ class Recommend extends Component {
             isOpen: false,
             photoSwipeOptions: {
                 index: 0,
-                shareEl: false,
-                fullscreenEl: false
+                shareEl: true,
+                fullscreenEl: false,
+                shareButtons: [
+                    {id:'download', label:'Download', url:'{{raw_image_url}}', download:true}
+                ],
             },
             photoSwipeItems: [],
             post_id: '',//翻页值，为上一页最后一个的
@@ -28,7 +31,7 @@ class Recommend extends Component {
             }
         };
         this.getRecommendList = function (page = 1, type = 'refresh', post_id = '') {
-            axios.get('http://localhost:8000/recommend', {
+            axios.get('http://192.168.47.226:8000/recommend', {
                 params: {
                     page,
                     type,
@@ -37,7 +40,10 @@ class Recommend extends Component {
             }).then((res) => {
                 let data = res.data['feedList'];
                 if (type === 'refresh') {
-                    this.setState({recommendList: []});
+                    this.setState({
+                        recommendList: [],
+                        page: 2
+                    });
                 }
                 for (let i = 0; i < data.length; i++) {
                     data[i]['published_at'] = Tool.getTimeDiff(data[i]['published_at']);
@@ -96,7 +102,12 @@ class Recommend extends Component {
     }
 
     componentWillUnmount() {
-        document.documentElement.scrollTop = 0;
+        if ( document.documentElement.scrollTop === 0) {
+            document.body.scrollTop = 0;
+        }else {
+            document.documentElement.scrollTop = 0;
+        }
+
         document.onscroll = () => {
         }  //页面卸载取消到达底部处理
         this.setState = () => {  //页面卸载时重写setState方法，解决页面卸载时异步setState还在执行的问题
@@ -108,9 +119,10 @@ class Recommend extends Component {
         let RecommendItems = [];
         if (this.state.recommendList) {
             RecommendItems = this.state.recommendList.map((item, index) => {
+                item.site.icon = item.site.icon.replace('https','http');
                 if (item.images) {
                     item.images.forEach((item) => {
-                        item.src = `https://photo.tuchong.com/${item.user_id}/f/${item.img_id}.jpg`
+                        item.src = `http://photo.tuchong.com/${item.user_id}/f/${item.img_id}.jpg`
                     });
                     return (
                         <div className="recommend_item" key={index}>
@@ -140,7 +152,9 @@ class Recommend extends Component {
         }
         return (
             <div id="recommend">
-                <LoadComponent/>
+                <div className="loadComponent">
+                    <LoadComponent/>
+                </div>
                 <div className="ulList">
                     {RecommendItems}
                 </div>

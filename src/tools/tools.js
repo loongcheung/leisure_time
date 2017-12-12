@@ -3,12 +3,46 @@
  */
 export const Tool = {};
 
+//滚动条滚动高度
+function getDocumentTop() {
+    let scrollTop, bodyScrollTop = 0, documentScrollTop = 0;
+    if (document.body) {
+        bodyScrollTop = document.body.scrollTop;
+    }
+    if (document.documentElement) {
+        documentScrollTop = document.documentElement.scrollTop;
+    }
+    scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+    return scrollTop;
+}
+
+//可视窗口高度
+function getWindowHeight() {
+    let windowHeight;
+    if (document.compatMode === "CSS1Compat") {
+        windowHeight = document.documentElement.clientHeight;
+    } else {
+        windowHeight = document.body.clientHeight;
+    }
+    return windowHeight;
+}
+
+//文档高度
+function getScrollHeight() {
+    let scrollHeight, bodyScrollHeight = 0, documentScrollHeight = 0;
+    if (document.body) {
+        bodyScrollHeight = document.body.scrollHeight;
+    }
+    if (document.documentElement) {
+        documentScrollHeight = document.documentElement.scrollHeight;
+    }
+    scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+    return scrollHeight;
+}
+
 Tool.loadMore = async (dom, fn) => { //到底加载更多  @param dom 上拉元素  @param fn 回调方法
     dom.onscroll = function () {
-        let viewHeight = this.documentElement.clientHeight,
-            contentHeight = this.documentElement.scrollHeight,
-            scrollTop = this.documentElement.scrollTop;
-        if (contentHeight - scrollTop - viewHeight === 0) {
+        if (getDocumentTop() + getWindowHeight() === getScrollHeight()) {
             fn();
         }
     };
@@ -23,10 +57,12 @@ Tool.refresh = (dom, fn) => { //下拉下载更多  @param dom 滑动组件  @pa
         pageY_start = touch.pageY;
     });
     dom.addEventListener('touchmove', function (event) {
-        let touch = event.targetTouches[0];
-        refreshY = refreshY + touch.pageY - pageY_start;
-        dom.style.transform = `translate3d(0,${refreshY}px,0)`;
-        pageY_start = touch.pageY;
+        if (getDocumentTop() === 0) {
+            let touch = event.targetTouches[0];
+            refreshY = refreshY + touch.pageY - pageY_start;
+            dom.style.transform = `translate3d(0,${refreshY}px,0)`;
+            pageY_start = touch.pageY;
+        }
     });
     dom.addEventListener('touchend', function () {
         if (refreshY < 70) {
@@ -60,9 +96,9 @@ Tool.getTimeDiff = function (time) {   //就近时间格式化，@param '2017-07
                 showTime = `${Math.floor(diffTime)}小时前`
             }
         }
-    } else if (diffTime<20 && diffTime >1) {
+    } else if (diffTime < 20 && diffTime > 1) {
         showTime = `${Math.floor(diffTime)}天前`
-    }else {
+    } else {
         showTime = time.split(' ')[0];
     }
     return showTime

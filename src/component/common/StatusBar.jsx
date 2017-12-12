@@ -9,13 +9,13 @@ export default class StatusBar extends Component {
     constructor(props) {
         super(props)
     }
-    back() {
+    backPage() {
        window.history.back();
     }
     render() {
         return (
             <div id="StatusBar">
-                <div className="back iconfont" onClick={this.back}>&#xe608;</div>
+                <div className="back iconfont" onClick={this.backPage}>&#xe608;</div>
                 <div className="title">{this.props.title ? this.props.title : ''}</div>
                 <div className="moreOption iconfont">&#xe62b;</div>
             </div>

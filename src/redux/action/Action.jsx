@@ -1,5 +1,6 @@
 export const GET_COMMENT = 'GET_COMMENT';
 export const GET_IMAGEDETAIL_DATA = 'GET_IMAGEDETAIL_DATA';
+export const GET_PERSONAL_IMAGE_DATA = 'GET_PERSONAL_IMAGE_DATA';
 
 //获取评论
 export const getComment = content => {
@@ -16,3 +17,11 @@ export const getImageDetailData = data => {
         data
     }
 };
+
+//获取个人信息页图片数据
+export const getPersonalImageData = data => {
+    return {
+        type: GET_PERSONAL_IMAGE_DATA,
+        data
+    }
+}

@@ -1,10 +1,10 @@
-import {GET_COMMENT,GET_IMAGEDETAIL_DATA} from "../action/Action";
+import {GET_COMMENT, GET_IMAGEDETAIL_DATA} from "../action/Action";
 
 export const comment = (state = {}, action) => {
     switch (action.type) {
         case GET_COMMENT:
             state['content'] = action.content;
-            return Object.assign({},state);
+            return Object.assign({}, state);
         default:
             return state;
     }
@@ -14,7 +14,7 @@ export const comment = (state = {}, action) => {
 export const imageData = (state = {}, action) => {
     switch (action.type) {
         case GET_IMAGEDETAIL_DATA:
-            return Object.assign({},action.data);
+            return Object.assign({}, action.data);
         default:
             return state
     }

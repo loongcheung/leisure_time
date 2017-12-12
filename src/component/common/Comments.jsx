@@ -1,6 +1,6 @@
 /*
  * Component comments 评论容器组件
- * @param commentOptions<Object>  获取评论组件内容的回调，comments<Number> 总评论数 sort_by<Number 0|1> 0最热1最新 commentList<Array> 评论数组
+ * @param commentOptions<Object>  获取评论组件内容的回调，comments<Number> 总评论数 sort_by<Number 0|1> 0最热1最新 commentList<Array> 评论数组 isShowAll<Boolean> 是否已经加载全部
  * @param toggleSort<Function> 切换评论排序回调
  * */
 
@@ -12,6 +12,10 @@ export default class Comments extends Component {
     constructor(props) {
         super(props);
         this.state = {}
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props === nextProps || this.state === nextState
     }
 
     render() {
@@ -57,7 +61,7 @@ export default class Comments extends Component {
                     <div className="main" key={index}>
                         <div className="main_header">
                             <div className="site_info">
-                                <img src={item.author.icon}/>
+                                <img src={item.author.icon.replace('https','http')}/>
                                 <Link className="site_name" to={'siteInfo'}>{item.author.name}</Link>
                             </div>
                             <div className="likes iconfont">&#xe693;<span>{item.likes}</span></div>
@@ -84,6 +88,11 @@ export default class Comments extends Component {
             <div id="comments">
                 {commentHeader}
                 {commentList}
+                <div
+                    style={{display: this.props.commentOptions.isLoadAll && this.props.commentOptions.commentList.length ? 'block' : 'none'}}
+                    className="all_comments">
+                    已显示全部评论
+                </div>
             </div>
         )
     }

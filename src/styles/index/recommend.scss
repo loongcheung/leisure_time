@@ -2,6 +2,12 @@
   margin: 1rem 0 0.8rem 0;
   position: relative;
   background: #f7f7f7;
+  .loadComponent {
+    position: absolute;
+    top: 0.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .ulList {
     .recommend_item {
       background: #fff;
