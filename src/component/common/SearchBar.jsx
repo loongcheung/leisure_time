@@ -36,13 +36,7 @@ export default class SearchBar extends Component {
 
     componentDidUpdate() {
         if (this.state.value.length > 0) {
-            new Swiper('.swiper-container', {
-                loop: true,
-                autoplay: {
-                    delay: 2000,
-                    disableOnInteraction: false
-                }
-            });
+            new Swiper('.search-swiper-container');
         }
     }
 
@@ -103,7 +97,7 @@ export default class SearchBar extends Component {
                     <div>标签</div>
                     <div>用户</div>
                 </div>
-                <div className="swiper-container">
+                <div className="search-swiper-container">
                     <div className="swiper-wrapper">
                         <div className="swiper-slide">1</div>
                         <div className="swiper-slide">2</div>

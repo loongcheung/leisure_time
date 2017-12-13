@@ -26,7 +26,13 @@ class Index extends Component {
 
     componentDidUpdate() {
         //要在数据更新后初始化Swiper
-        new Swiper('.swiper-container');
+        new Swiper('.swiper-container',{
+            loop: true,
+                autoplay: {
+                delay: 1500,
+                    disableOnInteraction: false
+            }
+        });
     }
 
     componentDidMount() {

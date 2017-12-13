@@ -57,10 +57,12 @@ Tool.refresh = (dom, fn) => { //下拉下载更多  @param dom 滑动组件  @pa
         pageY_start = touch.pageY;
     });
     dom.addEventListener('touchmove', function (event) {
+        let touch = event.targetTouches[0];
+        refreshY = refreshY + touch.pageY - pageY_start;
         if (getDocumentTop() === 0) {
-            event.preventDefault();
-            let touch = event.targetTouches[0];
-            refreshY = refreshY + touch.pageY - pageY_start;
+            if (refreshY > 0) {   //当处于下拉刷新时上推不影响滚动条
+                event.preventDefault();
+            }
             dom.style.transform = `translate3d(0,${refreshY}px,0)`;
             pageY_start = touch.pageY;
         }

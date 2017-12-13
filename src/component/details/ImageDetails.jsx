@@ -17,6 +17,7 @@ class ImageDetails extends Component {
             title: '详情',
             isOpen: false,
             photoSwipeOptions: {
+                loop:false,
                 index: 0,
                 shareEl: true,
                 fullscreenEl: false,

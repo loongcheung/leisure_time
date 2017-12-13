@@ -14,6 +14,7 @@ class Recommend extends Component {
             recommendList: [],
             isOpen: false,
             photoSwipeOptions: {
+                loop: false,
                 index: 0,
                 shareEl: true,
                 fullscreenEl: false,
