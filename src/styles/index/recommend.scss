@@ -32,13 +32,13 @@
             transform: translateY(-50%);
           }
           .site_name {
-            font-size: 0.25rem;
+            font-size: 13px;
             position: absolute;
             left: 0.8rem;
             bottom: 0;
           }
           .site_time {
-            font-size: 0.2rem;
+            font-size: 12px;
             position: absolute;
             left: 0.8rem;
             top: 0;
@@ -50,7 +50,7 @@
           right: 0.35rem;
           top: 50%;
           transform: translateY(-50%);
-          font-size: 0.24rem;
+          font-size: 14px;
           color: #ffcc33;
         }
       }
@@ -62,11 +62,11 @@
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          font-size: 0.36rem;
+          font-size: 18px;
           line-height: 0.36rem;
           span {
             color: #999;
-            font-size: 0.2rem;
+            font-size: 12px;
             margin-left: 0.1rem;
             display: block;
             float: right;

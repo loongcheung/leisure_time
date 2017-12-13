@@ -8,6 +8,7 @@ import LoadComponent from "../common/Load";
 import {Tool} from "../../tools/tools";
 import template from "../template";
 import axios from "axios";
+import {HOST} from "../../config/index"
 
 class ImageDetails extends Component {
     constructor(props) {
@@ -64,7 +65,7 @@ class ImageDetails extends Component {
     };
 
     getComments(sort_id, post_id, indexPage, toggleSort) {
-        axios.get('http://192.168.47.226:8000/comments', {
+        axios.get(HOST + '/comments', {
             params: {
                 post_id: post_id, sort_by: sort_id, _rticket: new Date().getTime(), page: indexPage
             }

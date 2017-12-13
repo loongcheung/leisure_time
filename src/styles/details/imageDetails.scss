@@ -21,14 +21,14 @@
         @include vertical_mid;
       }
       .site_name {
-        font-size: 0.24rem;
+        font-size: 12px;
         position: absolute;
         left: 1rem;
         bottom: 0;
         color: #333;
       }
       .site_time {
-        font-size: 0.24rem;
+        font-size: 12px;
         position: absolute;
         color: #888;
         left: 1rem;
@@ -45,27 +45,27 @@
     border-bottom: 1px #f7f7f7 solid;
     &-title {
       color: #333;
-      font-size: 0.28rem;
+      font-size: 14px;
       text-align: left;
       font-weight: 700;
       margin-bottom: 0.2rem;
     }
     &-des {
       color: #666;
-      font-size: 0.24rem;
+      font-size: 12px;
       text-align: left;
       margin-bottom: 0.25rem;
     }
     &-tag_list {
       &-tags {
         padding: 0 0.2rem;
-        font-size: 0.24rem;
+        font-size: 12px;
         color: #888;
         text-align: center;
-        background: #f7f7f7;
+        background: #f8f9f9;
         line-height: 0.38rem;
         border-radius: 0.4rem;
-        border: 1px #ccc solid;
+        border: 1px #eee solid;
         display: inline-block;
         margin: 0 0.18rem 0.18rem 0;
       }
@@ -82,18 +82,18 @@
     .reward_title {
       span:first-of-type, span:last-of-type {
         color: #ccc;
-        font-size: 0.22rem;
+        font-size: 11px;
       }
       span:nth-of-type(2) {
         color: #333;
-        font-size: 0.24rem;
+        font-size: 12px;
         margin: 0 0.1rem;
       }
     }
     .reward_btn {
       background: #FF8C00;
       color: #fff;
-      font-size: 0.28rem;
+      font-size: 14px;
       border-radius: 0.25rem;
       line-height: 0.6rem;
       width: 1.8rem;
@@ -101,7 +101,7 @@
     }
     .reward_des {
       color: #666;
-      font-size: 0.24rem;
+      font-size: 12px;
     }
   }
   .moreLoading {

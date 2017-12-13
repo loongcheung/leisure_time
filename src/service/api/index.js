@@ -50,11 +50,42 @@ async function getVideos() {  //获取视频
     return request('GET', 'http://baobab.kaiyanapp.com/api/v4/tabs/selected')
 }
 
+async function getDiscover() {  //获取发现
+    return new Promise((resolve, reject) => {
+        request.get(`https://api.tuchong.com/discover-app`).end((err,res)=>{
+            resolve(res.body);
+            reject(err);
+        })
+    });
+}
+
+async function getEvents() {  //获取发现栏事件
+    return new Promise((resolve, reject) => {
+        request.get(`https://api.tuchong.com/events`).end((err,res)=>{
+            resolve(res.body);
+            reject(err);
+        })
+    });
+}
+
+async function getSearchRec() {  //获取搜索栏信息
+    return new Promise((resolve, reject) => {
+        request.get(`https://api.tuchong.com/tuchong/searchrec`).query({
+            _rticket : new Date().getTime()
+        }).end((err,res)=>{
+            resolve(res.body);
+            reject(err);
+        })
+    });
+}
 
 const api = {
     recommend: getRecommend,
     comments: getComments,
-    getVideos
+    getVideos,
+    getDiscover,
+    getEvents,
+    getSearchRec
 };
 
 module.exports = api;

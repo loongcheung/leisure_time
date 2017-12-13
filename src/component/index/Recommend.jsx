@@ -5,6 +5,7 @@ import {Tool} from "../../tools/tools";
 import LoadComponent from "../common/Load";
 import ImageWaterfall from "../common/ImageWaterfall";
 import template from "../template";
+import {HOST} from "../../config/index"
 
 class Recommend extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ class Recommend extends Component {
             }
         };
         this.getRecommendList = function (page = 1, type = 'refresh', post_id = '') {
-            axios.get('http://192.168.47.226:8000/recommend', {
+            axios.get(HOST + '/recommend', {
                 params: {
                     page,
                     type,

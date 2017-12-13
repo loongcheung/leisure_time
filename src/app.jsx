@@ -13,14 +13,14 @@ export default class App extends Component {
                     link: '/index/recommend'
                 },
                 {
-                    icon: '\ue619',
-                    icon_selected: '\ue601',
+                    icon: '\ue623',
+                    icon_selected: '\ue8c0',
                     text: '发现',
                     selected: false,
                     link: '/find'
                 },
                 {
-                    icon: '\ue6ad',
+                    icon: '\ue62f',
                     icon_selected: '\ue71c',
                     text: '动态',
                     selected: false,

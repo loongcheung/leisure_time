@@ -58,6 +58,7 @@ Tool.refresh = (dom, fn) => { //下拉下载更多  @param dom 滑动组件  @pa
     });
     dom.addEventListener('touchmove', function (event) {
         if (getDocumentTop() === 0) {
+            event.preventDefault();
             let touch = event.targetTouches[0];
             refreshY = refreshY + touch.pageY - pageY_start;
             dom.style.transform = `translate3d(0,${refreshY}px,0)`;

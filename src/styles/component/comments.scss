@@ -48,14 +48,14 @@
         }
       }
       .likes {
-        font-size: 0.3rem;
+        font-size: 15px;
         line-height: 0.6rem;
         vertical-align: top;
         display: inline-block;
         span {
           display: inline-block;
           margin-left: 0.12rem;
-          font-size: 0.26rem;
+          font-size: 13px;
         }
       }
       .likesed {
@@ -70,7 +70,7 @@
         color: #333;
       }
       &-time {
-        font-size: 0.24rem;
+        font-size: 12px;
         padding: 0.12rem 0 0.18rem 0;
       }
     }
@@ -96,6 +96,6 @@
   .no_comment,.all_comments {
     color: #333;
     text-align: center;
-    font-size: 0.26rem;
+    font-size: 13px;
   }
 }
