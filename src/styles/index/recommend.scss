@@ -1,7 +1,7 @@
 #recommend {
   margin: 1rem 0 0.8rem 0;
   position: relative;
-  background: #f7f7f7;
+  background: #eee;
   .loadComponent {
     position: absolute;
     top: 0.4rem;
@@ -10,8 +10,8 @@
   }
   .ulList {
     .recommend_item {
-      background: #fff;
-      margin-bottom: 0.2rem;
+      background: #f8f9f9;
+      margin-bottom: 0.3rem;
       .top {
         width: 100%;
         position: relative;

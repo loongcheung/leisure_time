@@ -51,4 +51,13 @@ router.get('/searchrec', async (ctx, next) => {
     await next();
 });
 
+/*搜索*/
+router.get('/search', async (ctx, next) => {
+    await api.search(ctx.query).then((res) => {
+        ctx.response.body = res;
+    });
+    await next();
+});
+
+
 module.exports = router.routes();

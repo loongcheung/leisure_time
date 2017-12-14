@@ -28,8 +28,7 @@ class Recommend extends Component {
             ImageWaterfallOptions: {
                 showNum: 4,
                 showAll: false,
-                maxWidth: window.screen.width,
-                maxHeight: window.screen.height
+                maxWidth: window.screen.width
             }
         };
         this.getRecommendList = function (page = 1, type = 'refresh', post_id = '') {
@@ -40,6 +39,7 @@ class Recommend extends Component {
                     post_id
                 }
             }).then((res) => {
+                this.props.refresh(false);  //防止点击多次刷新
                 let data = res.data['feedList'];
                 if (type === 'refresh') {
                     this.setState({
@@ -84,6 +84,12 @@ class Recommend extends Component {
         if (event.target === event.currentTarget) {
             this.props.getImageDetailData(item);  //触发action，详情页取store的值
             this.props.history.push(`/detail/image`);
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.props.canRefresh === true) {
+            this.getRecommendList();
         }
     }
 
@@ -154,7 +160,7 @@ class Recommend extends Component {
         }
         return (
             <div id="recommend">
-                <div className="loadComponent">
+                <div style={{zIndex : this.props.canRefresh === true ? '999' : '0'}} className="loadComponent">
                     <LoadComponent/>
                 </div>
                 <div className="ulList">

@@ -1,7 +1,7 @@
 /*
  * Component ImageWaterfall 移动端瀑布流图片组件（等高不等宽）
  * @param imgList<Array>  图片集合数组，每个元素必须包括src,width,height
- * @param options<Object> 组件选项 showNum<NUmber>:显示数目  showAll<Boolean>:显示全部  maxWidth<Number>:图片显示的最大宽度  maxHeight<Number>:图片显示的最大高度
+ * @param options<Object> 组件选项 showNum<NUmber>:显示数目  showAll<Boolean>:显示全部  maxWidth<Number>:图片显示的最大宽度
  * @param clickLoadMore<Function>  查看更多回调(与showNum、showAll配合使用)
  * @param openPhotoSwiper<Function>  查看图片回调(与react-photoswipe配合使用)
  * */
@@ -19,7 +19,7 @@ class ImageWaterfall extends Component {
     }
 
     render() {
-        let {showAll, showNum, maxWidth, maxHeight} = this.props.options;
+        let {showAll, showNum, maxWidth} = this.props.options;
         //将图片数组分为两两一组
         let ImgList = [];
         let loadMore = '';
@@ -36,8 +36,7 @@ class ImageWaterfall extends Component {
                     <div style={{fontSize: '0px'}} key={i}>
                         <img onClick={this.props.openPhotoSwiper.bind(this, this.props.imgList, i)}
                              src={this.props.imgList[i].src} style={{
-                            maxWidth: `${maxWidth}px`,
-                            maxHeight: `${maxHeight}px`
+                            maxWidth: `${maxWidth}px`
                         }}/>
                     </div>
                 )

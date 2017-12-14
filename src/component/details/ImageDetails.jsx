@@ -29,8 +29,7 @@ class ImageDetails extends Component {
             ImageWaterfallOptions: {
                 showNum: 4,
                 showAll: true,
-                maxWidth: window.screen.width,
-                maxHeight: window.screen.height
+                maxWidth: window.screen.width
             },
             sort_by: 0,  //默认按热门排序
             commentIndexPage: 2, //到达底部当前评论页，首次到底加载第二页

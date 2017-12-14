@@ -1,10 +1,87 @@
 #find_index {
   .find_content {
-    padding-top: 1rem;
+    padding: 1rem 0;
+    background: #eee;
     .bannerItem {
       height: 4.2rem;
       background-repeat: no-repeat;
       background-size: 100% 4.2rem;
+    }
+    .find_entry {
+
+    }
+    .event_list {
+      &-title {
+        text-align: center;
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1.2rem;
+        span {
+          color: #ff0149;
+        }
+      }
+      &-item {
+        width: 100%;
+        overflow-x: hidden;
+        margin-bottom: 0.3rem;
+        &-img {
+          position: relative;
+          img {
+            max-width: 100%;
+            display: block;
+          }
+          div {
+            font-size: 12px;
+            color: #fff;
+            line-height: 0.4rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            width: 1.5rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+        &-info {
+          padding: 0.3rem;
+          background: #f8f9f9;
+          width: 100%;
+          &-name {
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+          }
+          &-posts {
+            font-size: 13px;
+            color: #333;
+            font-weight: bold;
+            display: inline-block;
+            width: 25%;
+          }
+          &-desc {
+            font-size: 13px;
+            color: #666;
+            width: 70%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: bottom;
+            span {
+              color: #ffcc33;
+            }
+          }
+        }
+      }
+      &-des {
+        text-align: center;
+        font-size: 12px;
+        color: #666;
+        height: 1rem;
+        background: #f8f9f9;
+        padding-top: 0.3rem;
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
+import template from "../template"
 
-export default class App extends Component {
+class Status extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -36,6 +37,14 @@ export default class App extends Component {
             ]
         };
         this.selectIndexBar = function (index) {
+            if (index === 0 && this.state.statusBarList[0].selected) {  //点击首页刷新
+                this.props.refresh(true);
+                if ( document.documentElement.scrollTop === 0) {
+                    document.body.scrollTop = 0;
+                }else {
+                    document.documentElement.scrollTop = 0;
+                }
+            }
             this.state.statusBarList.forEach((item, inx) => {
                 if (inx === index) {
                     item.selected = true
@@ -78,3 +87,8 @@ export default class App extends Component {
         )
     }
 }
+
+export default template({
+    id: 'statusBar',
+    component: Status
+})

@@ -79,13 +79,31 @@ async function getSearchRec() {  //获取搜索栏信息
     });
 }
 
+async function search(query) {  //搜索
+    let {page,type,content,count,_rticket} = query;
+    console.log(query)
+    return new Promise((resolve, reject) => {
+        request.get(`https://api.tuchong.com/tuchong/search`).query({
+            page,
+            type,
+            query: content ? content : '""',
+            count,
+            _rticket,
+        }).end((err,res)=>{
+            resolve(res.body);
+            reject(err);
+        })
+    });
+}
+
 const api = {
     recommend: getRecommend,
     comments: getComments,
     getVideos,
     getDiscover,
     getEvents,
-    getSearchRec
+    getSearchRec,
+    search
 };
 
 module.exports = api;

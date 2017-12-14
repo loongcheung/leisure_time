@@ -1,6 +1,7 @@
 export const GET_COMMENT = 'GET_COMMENT';
 export const GET_IMAGEDETAIL_DATA = 'GET_IMAGEDETAIL_DATA';
 export const GET_PERSONAL_IMAGE_DATA = 'GET_PERSONAL_IMAGE_DATA';
+export const REFRESH = 'REFRESH';
 
 //获取评论
 export const getComment = content => {
@@ -24,4 +25,12 @@ export const getPersonalImageData = data => {
         type: GET_PERSONAL_IMAGE_DATA,
         data
     }
-}
+};
+
+//点击刷新
+export const refresh = data => {
+    return {
+        type: REFRESH,
+        data
+    }
+};

@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter, Redirect, Route} from "react-router-dom";
-import App from "../app";
+import Status from "../component/common/Status";
 import Index from "../component/index/Index";
 import Recommend from "../component/index/Recommend";
 import Video from "../component/index/Video";
@@ -28,7 +28,7 @@ const detail = ({match}) => (
 /*页面路由*/
 const appParent = ({match}) => (
     <div>
-        <Route key={match.key} path={`${match.url}`} component={App}/>
+        <Route key={match.key} path={`${match.url}`} component={Status}/>
         <Route key={match.key} path={`${match.url}/index`} component={indexParent}/>
         <Route key={match.key} path={`${match.url}/find`} component={findParent}/>
     </div>
