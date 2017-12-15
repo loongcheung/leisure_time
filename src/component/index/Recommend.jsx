@@ -115,7 +115,6 @@ class Recommend extends Component {
         }else {
             document.documentElement.scrollTop = 0;
         }
-
         document.onscroll = () => {
         }  //页面卸载取消到达底部处理
         this.setState = () => {  //页面卸载时重写setState方法，解决页面卸载时异步setState还在执行的问题
